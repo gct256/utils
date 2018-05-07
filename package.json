@@ -1,0 +1,36 @@
+{
+  "name": "@gct256/utils",
+  "version": "1.0.0",
+  "description": "utilities",
+  "main": "index",
+  "scripts": {
+    "test": "jest",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gct256/utils.git"
+  },
+  "author": "gct256+github@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gct256/utils/issues"
+  },
+  "homepage": "https://github.com/gct256/utils#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "jest": "^22.4.3",
+    "rollup": "^0.58.2",
+    "rollup-plugin-babel": "^3.0.4"
+  },
+  "dependencies": {
+    "cli-width": "^2.2.0",
+    "lodash.tostring": "^4.1.4"
+  }
+}
