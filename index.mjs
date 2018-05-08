@@ -11,37 +11,6 @@ function toString(arg) {
   return lodashToString(arg);
 }
 
-/**
- * Convert any values to string array.
- * If the argument is a nested array, flatten it.
- *
- * @param {...any} args arguments.
- * @returns {string[]} result.
- */
-function toStringArray(...args) {
-  const result = [];
-  const l = args.length;
-  for (let i = 0; i < l; i += 1) {
-    const arg = args[i];
-    if (Array.isArray(arg)) {
-      result.push(...toStringArray(...arg));
-    } else {
-      result.push(toString(arg));
-    }
-  }
-  return result;
-}
-
-/**
- * Check if the value is a finite number.
- *
- * @param {...any} args argument.
- * @returns {boolean} result.
- */
-function isFiniteValue(...args) {
-  return args.every(x => x !== null && Number.isFinite(+x));
-}
-
 /* eslint no-console: off */
 
 /**
@@ -82,6 +51,51 @@ function getLogger(label) {
     }
   };
   return logger;
+}
+
+/**
+ * Check if the value is a finite number.
+ *
+ * @param {...any} args argument.
+ * @returns {boolean} result.
+ */
+function isFiniteValue(...args) {
+  return args.every(x => x !== null && Number.isFinite(+x));
+}
+
+/**
+ * Calculate the remainder like Python.
+ *
+ * @param {number} a dividend.
+ * @param {number} b divisor. If it is 0 the result will always be NaN.
+ * @returns {number} result.
+ */
+function modulo(a, b) {
+  if (b === 0) return NaN;
+  if (a === 0 || a === b || -a === b) return 0;
+  if (a > 0 && b > 0 || a < 0 && b < 0) return a % b;
+  return a % b + b;
+}
+
+/**
+ * Convert any values to string array.
+ * If the argument is a nested array, flatten it.
+ *
+ * @param {...any} args arguments.
+ * @returns {string[]} result.
+ */
+function toStringArray(...args) {
+  const result = [];
+  const l = args.length;
+  for (let i = 0; i < l; i += 1) {
+    const arg = args[i];
+    if (Array.isArray(arg)) {
+      result.push(...toStringArray(...arg));
+    } else {
+      result.push(toString(arg));
+    }
+  }
+  return result;
 }
 
 // [todo] documentation
@@ -129,10 +143,11 @@ class ObjectCache {
 }
 
 const utils = {
+  getLogger,
+  isFiniteValue,
+  modulo,
   toString,
   toStringArray,
-  isFiniteValue,
-  getLogger,
 
   FileMap,
   ObjectCache
